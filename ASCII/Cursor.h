@@ -225,13 +225,18 @@ public:
 		dimension[1] = sizeY;
 	}
 
-	//void paint(string colour)
-	//{
-	//	colour = getColour(colour);
-	//}
-	//void paint(char r, char g, char b)
-	//{
-	//	printf("\x1b[38;2;%i;%i;%i m",r,g,b);
-	//	cout << "mmhmm" << endl;
-	//}
+	void paint(string colourCode)
+	{
+		string tempString;
+		for (int ii = 0; ii < dimension[1]; ii++)
+		{
+			for (int i = 0; i < dimension[0]; i++)
+			{
+				tempString = data[ii][i];
+				data[ii][i] = colourCode;
+				data[ii][i] += tempString;
+				data[ii][i] += "\x1b[0m";
+			}
+		}
+	}
 };
