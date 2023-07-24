@@ -30,26 +30,25 @@ int main()
 	//int mod;
 	//cin >> mod;
 	//cout << endl;
-	string color[8] = { "black","red","green","yellow","blue","magenta","cyan","white" };
-	for (int i = 0; i < 8; i++)
-	{
-		cout << getColour(color[i], 1, 1) << "bruh" << "\x1b[0m" << endl;
-		cout << getColour(color[i], 1, 0) << "bruh" << "\x1b[0m" << endl;
-		cout << getColour(color[i], 0, 1) << "bruh" << "\x1b[0m" << endl;
-		cout << getColour(color[i], 0, 0) << "bruh" << "\x1b[0m" << endl;
-	}
-	
-	SGRCodeTest();
 
-	cout << "\x1b[48;2;255;0;255m" << "hello" << endl;
+	//
+	//SGRCodeTest();
 
-	cout << endl << endl;
+	//cout << "\x1b[48;2;255;0;255m" << "hello" << endl;
 
-	int r, g, b;
-	char const* hexColor = "#8060c2";
-	sscanf(hexColor, "#%02x%02x%02x", &r, &g, &b);
+	//cout << endl << endl;
 
-	cout << r << g << b << endl;
+	ASCIIobject screen, menu, border;
+	screen.createCanvas(40, 20);
+	screen.place();
+
+	menu.createCanvas(20, 5, "~", "|");
+	menu.place(3, 3);
+
+	border.createCanvas(15, 10, "_", "}", "O", "O", "O", "O");
+	border.place(24, 9);
+
+	CsrMoveTo(screen.dimension[0] + 1, screen.dimension[1] + 1);
 
 	return 0;
 }
