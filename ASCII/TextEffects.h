@@ -1,19 +1,13 @@
 #include <string>
 #include <unordered_map>
 #include <format>
+#
 
 using namespace std;
 
 const long rt5 = (int)(sqrt(5) * 1000000);
 const long rt7 = (int)(sqrt(11) * 1000000);
 
-inline void SGRCodeTest() // Outputs all SGR codes to Terminal
-{
-	for (int i = 0; i < 107; i++)
-	{
-		cout << format("\x1b[{}m SGR code: {}   \x1b[0m", i, i) << endl;
-	}
-}
 inline string getColour(string colour, bool isBright, bool isBackground) // 3:4 bit colour depth, most portable
 {
 	// 511
@@ -79,5 +73,23 @@ inline string getEffect(char effect) // b: bold, u: underline, i: inverted
 	case 'u': return ("\x1b[4m");
 	case 'i': return ("\x1b[7m");
 	default: return ("\x1b[0m"); // Out of Bound
+	}
+}
+inline void SGRCodeTest() // Outputs all SGR codes to Terminal
+{
+	for (int i = 0; i < 107; i++)
+	{
+		cout << format("\x1b[{}m SGR code: {}   \x1b[0m", i, i) << endl;
+	}
+}
+inline void ANSI4bitColourTest()
+{
+	string color[8] = { "black","red","green","yellow","blue","magenta","cyan","white" };
+	for (int i = 0; i < 8; i++)
+	{
+		cout << getColour(color[i], 1, 1) << "bruh" << "\x1b[0m" << endl;
+		cout << getColour(color[i], 1, 0) << "bruh" << "\x1b[0m" << endl;
+		cout << getColour(color[i], 0, 1) << "bruh" << "\x1b[0m" << endl;
+		cout << getColour(color[i], 0, 0) << "bruh" << "\x1b[0m" << endl;
 	}
 }
