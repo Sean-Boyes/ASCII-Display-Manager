@@ -1,4 +1,4 @@
-#include "Test2.h"
+#include "Cursor.h"
 #include "TextEffects.h"
 
 int main()
