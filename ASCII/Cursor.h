@@ -41,7 +41,7 @@ class ASCIIobject
 {
 private:
 	int numberOfColours = 8;
-	int goldenRatio = (int)( (1 + sqrt(5)) * 5000000 );
+	double goldenRatio = (1 + sqrt(5)) / 2;
 public:
 	canvas data;
 	int dimension[2] = { 0,0 };
@@ -98,8 +98,133 @@ public:
 				cout << ii;
 			}
 			cout << endl;
+			CsrMove('r', x-1);
 		}
 	}
+	void createCanvas(int sizeX, int sizeY)
+	{
+		canvas tempData;
+		line tempLine;
+		string tempString;
+
+		// Top canvas
+		tempLine.push_back("/"); // insert "/"
+		for (int i = 0; i < sizeX - 2; i++)
+		{
+			tempLine.push_back("-"); // insert "-"
+		}
+		tempLine.push_back("\\"); // insert "\"
+		tempData.push_back(tempLine); // next line
+		// Middle canvas
+		for (int i = 0; i < sizeY - 2; i++)
+		{
+			tempLine.clear();
+			tempLine.push_back("|"); // insert "|" in 
+			for (int ii = 0; ii < sizeX - 2; ii++)
+			{
+				tempLine.push_back(" "); // insert "-" in
+			}
+			tempLine.push_back("|"); // insert "|"
+			tempData.push_back(tempLine); // next line
+		}
+		tempLine.clear();
+
+		// Bottom canvas
+		tempLine.push_back("\\"); // insert "\"
+		for (int i = 0; i < sizeX - 2; i++)
+		{
+			tempLine.push_back("-"); // insert "|"
+		}
+		tempLine.push_back("/"); // insert "/"
+		tempData.push_back(tempLine); // next line
+
+		data = tempData;
+		dimension[0] = sizeX;
+		dimension[1] = sizeY;
+	}
+	void createCanvas(int sizeX, int sizeY, string vLine, string hLine) // Multi-Character lines will skew the size.
+	{
+		canvas tempData;
+		line tempLine;
+		string tempString;
+
+		// Top canvas
+		tempLine.push_back("/"); // insert "/"
+		for (int i = 0; i < sizeX - 2; i++)
+		{
+			tempLine.push_back(vLine); // insert "-"
+		}
+		tempLine.push_back("\\"); // insert "\"
+		tempData.push_back(tempLine); // next line
+		// Middle canvas
+		for (int i = 0; i < sizeY - 2; i++)
+		{
+			tempLine.clear();
+			tempLine.push_back(hLine); // insert "|" in 
+			for (int ii = 0; ii < sizeX - 2; ii++)
+			{
+				tempLine.push_back(" "); // insert "-" in
+			}
+			tempLine.push_back(hLine); // insert "|"
+			tempData.push_back(tempLine); // next line
+		}
+		tempLine.clear();
+
+		// Bottom canvas
+		tempLine.push_back("\\"); // insert "\"
+		for (int i = 0; i < sizeX - 2; i++)
+		{
+			tempLine.push_back(vLine); // insert "|"
+		}
+		tempLine.push_back("/"); // insert "/"
+		tempData.push_back(tempLine); // next line
+
+		data = tempData;
+		dimension[0] = sizeX;
+		dimension[1] = sizeY;
+	}
+	void createCanvas(int sizeX, int sizeY, string hLine, string vLine, string cornerTL, string cornerTR, string cornerBL, string cornerBR) // Multi-Character lines and/or corners will skew the size.
+	{
+		canvas tempData;
+		line tempLine;
+		string tempString;
+
+		// Top canvas
+		tempLine.push_back(cornerTL); // insert "/"
+		for (int i = 0; i < sizeX - 2; i++)
+		{
+			tempLine.push_back(hLine); // insert "-"
+		}
+		tempLine.push_back(cornerTR); // insert "\"
+		tempData.push_back(tempLine); // next line
+		// Middle canvas
+		for (int i = 0; i < sizeY - 2; i++)
+		{
+			tempLine.clear();
+			tempLine.push_back(vLine); // insert "|" in 
+			for (int ii = 0; ii < sizeX - 2; ii++)
+			{
+				tempLine.push_back(" "); // insert "-" in
+			}
+			tempLine.push_back(vLine); // insert "|"
+			tempData.push_back(tempLine); // next line
+		}
+		tempLine.clear();
+
+		// Bottom canvas
+		tempLine.push_back(cornerBL); // insert "\"
+		for (int i = 0; i < sizeX - 2; i++)
+		{
+			tempLine.push_back(hLine); // insert "|"
+		}
+		tempLine.push_back(cornerBR); // insert "/"
+		tempData.push_back(tempLine); // next line
+
+		data = tempData;
+		dimension[0] = sizeX;
+		dimension[1] = sizeY;
+	}
+
 	//void paint(string colour)
 	//{
 	//	colour = getColour(colour);
