@@ -68,7 +68,7 @@ int main()
  // From txt file
  ASCIIobject text;
  text.load("image.txt");
- text.place( 5 , 5 );
+ text.place( 5 , 5 ); // places 5 units from the top, and 5 units from the left
 }
 ```
 Since you place the object where your terminal cursor is currently, you can alternatily move your cursor with the `CsrMove` for relitive movement or `CsrMoveTo` for obsolute movement.
@@ -78,13 +78,31 @@ Since you place the object where your terminal cursor is currently, you can alte
 
 int main()
 }
- // From txt file
  ASCIIobject text;
  text.load("image.txt");
- CsrMoveTo(5,5);
+ CsrMoveTo(5,5); // moves cursor to 5 units from the top, and 5 units from the left
  text.place();
 }
 ```
 
+You can change the colour of the text, background, and other atributes with the `.paint()` method, using either `getColour()` or `getEffect()` as the input. Chaining multiple effects with colours works.
+
+ex:
+
+```cpp
+#include "Cursor.h"
+#include "TextEffects.h"
+
+int main()
+}
+ // From txt file
+ ASCIIobject text;
+ text.load("image.txt");
+ text.paint(getColour("blue",1,0)); // makes text.data bright blue
+ text.paint(getEffect('u')); // makes txt.data all underlined
+ text.place();
+}
+
+```
 
 
