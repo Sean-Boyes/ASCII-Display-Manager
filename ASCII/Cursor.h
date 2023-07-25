@@ -6,7 +6,7 @@
 using namespace std;
 
 typedef vector<string> line;
-typedef vector<line> canvas;
+typedef vector<line> image;
 
 
 // Cursor functions
@@ -43,7 +43,7 @@ private:
 	int numberOfColours = 8;
 	double goldenRatio = (1 + sqrt(5)) / 2;
 public:
-	canvas data;
+	image data;
 	int dimension[2] = { 0,0 };
 	string file = "null.txt";
 
@@ -53,7 +53,7 @@ public:
 		ifstream newfile(file);
 
 		string tmpString;
-		canvas tmpCanvas;
+		image tmpCanvas;
 		line tmpLine;
 
 		if (newfile.is_open())
@@ -103,7 +103,7 @@ public:
 	}
 	void createCanvas(int sizeX, int sizeY)
 	{
-		canvas tempData;
+		image tempData;
 		line tempLine;
 		string tempString;
 
@@ -144,7 +144,7 @@ public:
 	}
 	void createCanvas(int sizeX, int sizeY, string vLine, string hLine) // Multi-Character lines will skew the size.
 	{
-		canvas tempData;
+		image tempData;
 		line tempLine;
 		string tempString;
 
@@ -185,7 +185,7 @@ public:
 	}
 	void createCanvas(int sizeX, int sizeY, string hLine, string vLine, string cornerTL, string cornerTR, string cornerBL, string cornerBR) // Multi-Character lines and/or corners will skew the size.
 	{
-		canvas tempData;
+		image tempData;
 		line tempLine;
 		string tempString;
 
