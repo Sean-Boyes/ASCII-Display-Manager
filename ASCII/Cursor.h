@@ -224,6 +224,47 @@ public:
 		dimension[0] = sizeX;
 		dimension[1] = sizeY;
 	}
+	void createCanvas(int sizeX, int sizeY, string topHLine, string leftVLine, string bottomHLine, string rightVLine, string cornerTL, string cornerTR, string cornerBL, string cornerBR) // Multi-Character lines and/or corners will skew the size.
+	{
+		image tempData;
+		line tempLine;
+		string tempString;
+
+		// Top canvas
+		tempLine.push_back(cornerTL); // insert "/"
+		for (int i = 0; i < sizeX - 2; i++)
+		{
+			tempLine.push_back(topHLine); // insert "-"
+		}
+		tempLine.push_back(cornerTR); // insert "\"
+		tempData.push_back(tempLine); // next line
+		// Middle canvas
+		for (int i = 0; i < sizeY - 2; i++)
+		{
+			tempLine.clear();
+			tempLine.push_back(leftVLine); // insert "|" in 
+			for (int ii = 0; ii < sizeX - 2; ii++)
+			{
+				tempLine.push_back(" "); // insert "-" in
+			}
+			tempLine.push_back(rightVLine); // insert "|"
+			tempData.push_back(tempLine); // next line
+		}
+		tempLine.clear();
+
+		// Bottom canvas
+		tempLine.push_back(cornerBL); // insert "\"
+		for (int i = 0; i < sizeX - 2; i++)
+		{
+			tempLine.push_back(bottomHLine); // insert "|"
+		}
+		tempLine.push_back(cornerBR); // insert "/"
+		tempData.push_back(tempLine); // next line
+
+		data = tempData;
+		dimension[0] = sizeX;
+		dimension[1] = sizeY;
+	}
 
 	void paint(string colourCode)
 	{
