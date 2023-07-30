@@ -5,8 +5,8 @@
 
 using namespace std;
 
-const long rt5 = (int)(sqrt(5) * 1000000);
-const long rt7 = (int)(sqrt(11) * 1000000);
+const long long rt5 = (int)(sqrt(5) * 1000000);
+const long long rt7 = (int)(sqrt(11) * 1000000);
 
 inline string getColour(string colour, bool isBright, bool isBackground) // 3:4 bit colour depth, most portable
 {
@@ -14,41 +14,40 @@ inline string getColour(string colour, bool isBright, bool isBackground) // 3:4 
 	// nothing to see here :3
 	hash<string> hasher;
 	size_t hash = hasher(colour);
-	hash += (isBright * static_cast<long long> (rt5) + 1) * (isBackground * static_cast<long long> (rt7) + 1);
+	hash += (isBright * (rt5) + 1) * (isBackground * (rt7) + 1);
 	int index = hash % 511; // 13 for 8 colours
 	//cout << index << endl;
-
 	switch (index) // hash table
 	{
-	case 168: return "\x1b[90;100m"; // black 
+	case 244: return "\x1b[90;100m"; // black 
 	case 315: return "\x1b[90m";
-	case 107: return "\x1b[30;100m";
+	case 107: return "\x1b[30;40m";
 	case 384: return "\x1b[30m";
-	case 103: return "\x1b[91;100m"; // red 
+	case 179: return "\x1b[91;101m"; // red 
 	case 250: return "\x1b[91m";
-	case 42:  return "\x1b[31;100m";
+	case 42:  return "\x1b[31;41m";
 	case 319: return "\x1b[31m";
-	case 302: return "\x1b[92;102m"; // green 
+	case 378: return "\x1b[92;102m"; // green 
 	case 449: return "\x1b[92m";
-	case 241: return "\x1b[32;102m";
+	case 241: return "\x1b[32;42m";
 	case 7:   return "\x1b[32m";
-	case 464: return "\x1b[93;103m"; // yellow 
+	case 29 : return "\x1b[93;103m"; // yellow 
 	case 100: return "\x1b[93m";
-	case 403: return "\x1b[33;103m";
+	case 403: return "\x1b[33;43m";
 	case 169: return "\x1b[33m";
-	case 289: return "\x1b[96;104m"; // blue 
+	case 365: return "\x1b[96;104m"; // blue 
 	case 436: return "\x1b[96m";
-	case 228: return "\x1b[34;104m";
+	case 228: return "\x1b[34;44m";
 	case 505: return "\x1b[34m";
-	case 242: return "\x1b[95;105m"; // magenta 
+	case 318: return "\x1b[95;105m"; // magenta 
 	case 389: return "\x1b[95m";
-	case 181: return "\x1b[35;105m";
+	case 181: return "\x1b[35;45m";
 	case 458: return "\x1b[35m";
-	case 185: return "\x1b[96;106m"; // cyan 
+	case 261: return "\x1b[96;106m"; // cyan 
 	case 332: return "\x1b[96m";
-	case 124: return "\x1b[36;106m";
+	case 124: return "\x1b[36;46m";
 	case 401: return "\x1b[36m";
-	case 257: return "\x1b[97;107m"; // white 
+	case 333: return "\x1b[97;107m"; // white 
 	case 404: return "\x1b[97m";
 	case 196: return "\x1b[37;107m";
 	case 473: return "\x1b[37m";
