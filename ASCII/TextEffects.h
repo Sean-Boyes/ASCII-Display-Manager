@@ -65,13 +65,14 @@ inline string getColour(uint8_t red, uint8_t green, uint8_t blue, bool isBackgro
 	if (isBackground) { return format("\x1b[48;2;{};{};{}m", red, green, blue); }
 	else			  { return format("\x1b[38;2;{};{};{}m", red, green, blue); }
 }
-inline string getEffect(char effect) // b: bold, u: underline, i: inverted
+inline string getEffect(char effect) // b: bold, u: underline, i: inverted, r: reset
 {
 	switch (effect)
 	{
 	case 'b': return ("\x1b[1m");
 	case 'u': return ("\x1b[4m");
 	case 'i': return ("\x1b[7m");
+	case 'r': return ("\x1b[0m");
 	default: return ("\x1b[0m"); // Out of Bound
 	}
 }
