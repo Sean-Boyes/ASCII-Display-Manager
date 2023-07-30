@@ -11,7 +11,8 @@ typedef vector<line> image;
 
 
 // Cursor functions
-// Have to be inline 
+// Have to be inline
+
 inline void CsrMoveTo(int x, int y) // Moves cursor 'x' from the top, and 'y' from the left.
 {
 	printf("\x1b[%i;%iH", y, x);
