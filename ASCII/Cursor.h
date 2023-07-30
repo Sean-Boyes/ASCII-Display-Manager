@@ -101,6 +101,31 @@ public:
 			CsrMove('r', x-1);
 		}
 	}
+	void add(string str, int x, int y)
+	{
+		int currentx = 0;
+		while (currentx < str.length())
+		{
+			data[y][x] = str[currentx];
+			currentx++;
+		}
+	}
+	void add(ASCIIobject obj, int x, int y)
+	{
+		int currentx = 0;
+		int currenty = 0;
+
+		while (currenty < obj.dimension[1])
+		{
+			while (currentx < obj.dimension[0])
+			{
+				data[currenty + y][currentx + x] = obj.data[currenty][currentx];
+				currentx++;
+			}
+			currentx = 0;
+			currenty++;
+		}
+	}
 	void createCanvas(int sizeX, int sizeY)
 	{
 		image tempData;
