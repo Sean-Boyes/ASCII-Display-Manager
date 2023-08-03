@@ -4,10 +4,8 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
-typedef vector<string> line;
-typedef vector<line> image;
+typedef std::vector<std::string> line;
+typedef std::vector<line> image;
 
 
 // Cursor functions
@@ -47,14 +45,14 @@ private:
 public:
 	image data;
 	int dimension[2] = { 0,0 };
-	string file = "null.txt";
+	std::string file = "null.txt";
 
-	void load(string file)
+	void load(std::string file)
 	{
 		file = file;
-		ifstream newfile(file);
+		std::ifstream newfile(file);
 
-		string tmpString;
+		std::string tmpString;
 		image tmpCanvas;
 		line tmpLine;
 
@@ -66,7 +64,7 @@ public:
 				dimension[0] = 0;
 				while (dimension[0] < tmpString.size())
 				{
-					string s;
+					std::string s;
 					s.push_back(tmpString[dimension[0]]);
 					tmpLine.push_back(s);
 					dimension[0] += 1;
@@ -83,11 +81,11 @@ public:
 	{
 		for (line i : data)
 		{
-			for (string ii : i)
+			for (std::string ii : i)
 			{
-				cout << ii;
+				std::cout << ii;
 			}
-			cout << endl;
+			std::cout << std::endl;
 		}
 	}
 	void place( int x, int y) // Overloaded to place at coordinates
@@ -95,15 +93,15 @@ public:
 		CsrMoveTo(x, y);
 		for (line i : data)
 		{
-			for (string ii : i)
+			for (std::string ii : i)
 			{
-				cout << ii;
+				std::cout << ii;
 			}
-			cout << endl;
+			std::cout << std::endl;
 			CsrMove('r', x-1);
 		}
 	}
-	void add(string str, int x, int y)
+	void add(std::string str, int x, int y)
 	{
 		int currentx = 0;
 		while (currentx < str.length())
@@ -132,7 +130,7 @@ public:
 	{
 		image tempData;
 		line tempLine;
-		string tempString;
+		std::string tempString;
 
 		// Top canvas
 		tempLine.push_back("/"); // insert "/"
@@ -169,11 +167,11 @@ public:
 		dimension[0] = sizeX;
 		dimension[1] = sizeY;
 	}
-	void createCanvas(int sizeX, int sizeY, string vLine, string hLine) // Multi-Character lines will skew the size.
+	void createCanvas(int sizeX, int sizeY, std::string vLine, std::string hLine) // Multi-Character lines will skew the size.
 	{
 		image tempData;
 		line tempLine;
-		string tempString;
+		std::string tempString;
 
 		// Top canvas
 		tempLine.push_back("/"); // insert "/"
@@ -210,11 +208,11 @@ public:
 		dimension[0] = sizeX;
 		dimension[1] = sizeY;
 	}
-	void createCanvas(int sizeX, int sizeY, string hLine, string vLine, string cornerTL, string cornerTR, string cornerBL, string cornerBR) // Multi-Character lines and/or corners will skew the size.
+	void createCanvas(int sizeX, int sizeY, std::string hLine, std::string vLine, std::string cornerTL, std::string cornerTR, std::string cornerBL, std::string cornerBR) // Multi-Character lines and/or corners will skew the size.
 	{
 		image tempData;
 		line tempLine;
-		string tempString;
+		std::string tempString;
 
 		// Top canvas
 		tempLine.push_back(cornerTL); // insert "/"
@@ -251,11 +249,11 @@ public:
 		dimension[0] = sizeX;
 		dimension[1] = sizeY;
 	}
-	void createCanvas(int sizeX, int sizeY, string topHLine, string leftVLine, string bottomHLine, string rightVLine, string cornerTL, string cornerTR, string cornerBL, string cornerBR) // Multi-Character lines and/or corners will skew the size.
+	void createCanvas(int sizeX, int sizeY, std::string topHLine, std::string leftVLine, std::string bottomHLine, std::string rightVLine, std::string cornerTL, std::string cornerTR, std::string cornerBL, std::string cornerBR) // Multi-Character lines and/or corners will skew the size.
 	{
 		image tempData;
 		line tempLine;
-		string tempString;
+		std::string tempString;
 
 		// Top canvas
 		tempLine.push_back(cornerTL); // insert "/"
@@ -293,9 +291,9 @@ public:
 		dimension[1] = sizeY;
 	}
 
-	void paint(string colourCode)
+	void paint(std::string colourCode)
 	{
-		string tempString;
+		std::string tempString;
 		for (int ii = 0; ii < dimension[1]; ii++)
 		{
 			for (int i = 0; i < dimension[0]; i++)

@@ -3,16 +3,14 @@
 #include <unordered_map>
 #include <format>
 
-using namespace std;
-
 const long long rt5 = (int)(sqrt(5) * 1000000);
 const long long rt7 = (int)(sqrt(11) * 1000000);
 
-inline string getColour(string colour, bool isBright, bool isBackground) // 3:4 bit colour depth, most portable
+inline std::string getColour(std::string colour, bool isBright, bool isBackground) // 3:4 bit colour depth, most portable
 {
 	// 511
 	// nothing to see here :3
-	hash<string> hasher;
+	std::hash<std::string> hasher;
 	size_t hash = hasher(colour);
 	hash += (isBright * (rt5) + 1) * (isBackground * (rt7) + 1);
 	int index = hash % 511; // 13 for 8 colours
@@ -54,17 +52,17 @@ inline string getColour(string colour, bool isBright, bool isBackground) // 3:4 
 	default: return ("\x1b[0m"); // Out of Bound
 	}
 }
-inline string getColour(uint8_t colourId, bool isBackground) // 8-bit colour depth (3-3-2), see 256 color lookup table 
+inline std::string getColour(uint8_t colourId, bool isBackground) // 8-bit colour depth (3-3-2), see 256 color lookup table 
 {
-	if (isBackground) { return format("\x1b[48;5;{}m", colourId); }
-	else			  { return format("\x1b[38;5;{}m", colourId); }
+	if (isBackground) { return std::format("\x1b[48;5;{}m", colourId); }
+	else			  { return std::format("\x1b[38;5;{}m", colourId); }
 }
-inline string getColour(uint8_t red, uint8_t green, uint8_t blue, bool isBackground) // 24-bit colour depth (8-8-8), only avaliable on modern terminals
+inline std::string getColour(uint8_t red, uint8_t green, uint8_t blue, bool isBackground) // 24-bit colour depth (8-8-8), only avaliable on modern terminals
 {
-	if (isBackground) { return format("\x1b[48;2;{};{};{}m", red, green, blue); }
-	else			  { return format("\x1b[38;2;{};{};{}m", red, green, blue); }
+	if (isBackground) { return std::format("\x1b[48;2;{};{};{}m", red, green, blue); }
+	else			  { return std::format("\x1b[38;2;{};{};{}m", red, green, blue); }
 }
-inline string getEffect(char effect) // b: bold, u: underline, i: inverted, r: reset
+inline std::string getEffect(char effect) // b: bold, u: underline, i: inverted, r: reset
 {
 	switch (effect)
 	{
@@ -79,17 +77,17 @@ inline void SGRCodeTest() // Outputs all SGR codes to Terminal
 {
 	for (int i = 0; i < 107; i++)
 	{
-		cout << format("\x1b[{}m SGR code: {}   \x1b[0m", i, i) << endl;
+		std::cout << std::format("\x1b[{}m SGR code: {}   \x1b[0m", i, i) << std::endl;
 	}
 }
 inline void ANSI4bitColourTest()
 {
-	string color[8] = { "black","red","green","yellow","blue","magenta","cyan","white" };
+	std::string color[8] = { "black","red","green","yellow","blue","magenta","cyan","white" };
 	for (int i = 0; i < 8; i++)
 	{
-		cout << getColour(color[i], 1, 1) << "bruh" << "\x1b[0m" << endl;
-		cout << getColour(color[i], 1, 0) << "bruh" << "\x1b[0m" << endl;
-		cout << getColour(color[i], 0, 1) << "bruh" << "\x1b[0m" << endl;
-		cout << getColour(color[i], 0, 0) << "bruh" << "\x1b[0m" << endl;
+		std::cout << getColour(color[i], 1, 1) << "bruh" << "\x1b[0m" << std::endl;
+		std::cout << getColour(color[i], 1, 0) << "bruh" << "\x1b[0m" << std::endl;
+		std::cout << getColour(color[i], 0, 1) << "bruh" << "\x1b[0m" << std::endl;
+		std::cout << getColour(color[i], 0, 0) << "bruh" << "\x1b[0m" << std::endl;
 	}
 }
